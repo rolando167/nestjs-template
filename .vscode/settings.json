@@ -1,0 +1,13 @@
+
+{
+    "material-icon-theme.activeIconPack": "nest",
+    "material-icon-theme.folders.associations": {
+        "Users": "vm",
+        "Dto": "Lua"
+    },
+    "material-icon-theme.files.associations": {
+        "*.routes.ts": "Routing",
+        // "**.json": "json",
+        // "fileName.ts": "angular"
+    }
+}
