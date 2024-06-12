@@ -23,7 +23,6 @@ export class UserService {
 
     create(user: any): any {
         console.log(user.title);
-        
         return `This action returns a    📄 2024`;
     }
 
