@@ -21,11 +21,13 @@ export class UserService {
         return this.getAll().filter(p => p.id === id);
     }
 
-    create(task: any): any {
+    create(user: any): any {
+        console.log(user.title);
+        
         return `This action returns a    📄 2024`;
     }
 
-    update(task: any): any {
+    update(id:string, user: any): any {
         return `This action returns a    📄 2024`;
     }
 
