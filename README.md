@@ -17,7 +17,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 > npm i
 > npm --version
 
-> npm ...
+> npm install --save @nestjs/swagger
 ```
 
 ## 🔰 Running the app
