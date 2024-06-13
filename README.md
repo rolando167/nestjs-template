@@ -6,7 +6,8 @@
 
 ## 📌 Feactures
 
- * ✔ One
+ * ✔ Api Rest Local
+ * ✔ asyn/await - Promise<any>
 
 ## 🌐 Installation
 
