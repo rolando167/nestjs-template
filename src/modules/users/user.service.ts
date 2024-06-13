@@ -5,22 +5,25 @@ import { Injectable } from '@nestjs/common';
 export class UserService {
 
     className = [{
-        id: '1',
+        id: 1,
         name: 'A SPA app',
         email: 'aspa@test.com',
+        icon: '😄',
     },
     {
-        id: '2',
-        name: 'A Nest API',
+        id: 2,
+        name: 'A Nest API :D',
         email: 'anest@test.com',
+        icon: '🐺',
     }];
 
-    getAll(): any[] {
-        return this.className;
+    async getAll(): Promise<any[]> {
+        return await this.className;
     }
 
-    getById(id: string): any {
-        return this.getAll().filter(p => p.id === id);
+    async getById(id: number): Promise<any[]> {
+        const data = await this.getAll();
+        return data.filter(p => p.id === id);
     }
 
     create(user: any): any {
@@ -28,11 +31,11 @@ export class UserService {
         return `This action returns a    📄 2024`;
     }
 
-    update(id:string, user: any): any {
+    update(id: string, user: any): any {
         return `This action returns a    📄 2024`;
     }
 
-    delete(id: string): any {
+    delete(id: number): any {
         this.className = this.className.filter(p => p.id !== id);
     }
 }

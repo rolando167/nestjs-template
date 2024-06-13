@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put, Delete, Res, Req, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Res, Req, HttpStatus, ParseIntPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { Request, Response } from 'express';
@@ -10,15 +10,15 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get('/all')
-    getAll(@Res() res: Response): any {
+    async getAll(@Res() res: Response): Promise<any> {
         res.status(HttpStatus.OK)
-            .json(this.userService.getAll());
+            .json( await this.userService.getAll());
     }
 
     // findOne(@Param('id') id: string): any {
     @Get(":id")
-    getById(@Param('id') id: string, @Res() res: Response): any {
-        const data = this.userService.getById(id) || null;
+    async getById(@Param('id', ParseIntPipe) id: number, @Res() res: Response): Promise<any> {
+        const data = await this.userService.getById(id) || null;
         res.status(HttpStatus.OK)
             .json(data);
     }
@@ -45,8 +45,8 @@ export class UserController {
       * @param id
       */
     @Delete('delete/:id')
-    delete(@Param('id') id: string, @Res() res: Response) : any{
-        this.userService.delete(id);
+    async delete(@Param('id', ParseIntPipe) id:  number, @Res() res: Response): Promise<any>{
+        await this.userService.delete(id);
         res.status(HttpStatus.OK).json({
             "message": "Deleted!!"
         });
