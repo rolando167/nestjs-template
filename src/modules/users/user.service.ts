@@ -19,22 +19,22 @@ export class UserService {
     }];
 
     async getAll(): Promise<any[]> {
-        await sleep(3000);
+        //await sleep(3000);
         return await this.className;
     }
 
-    async getById(id: number): Promise<any[]> {
+    async getById(id: number): Promise<any[] | UserDto> {
         const data = await this.getAll();
         return data.filter(p => p.id === id);
     }
 
     create(user: any): any {
         console.log(user.title);
-        return `This action returns a    📄 2024`;
+        return `This action returns a 📄 2024`;
     }
 
     update(id: string, user: any): any {
-        return `This action returns a    📄 2024`;
+        return `This action returns a 📄 2024`;
     }
 
     delete(id: number): any {
