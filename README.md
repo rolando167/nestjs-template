@@ -57,7 +57,7 @@ Please make sure to update tests as appropriate.
 
 ```python
 # returns 'words'
- * https...
+ * https://github.com/chnirt/nestjs-graphql-best-practice
 
 ```
 
