@@ -1,10 +1,11 @@
+import { sleep } from 'src/utils/classes/sleep';
 import { UserDto } from './dto/user.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
 
-    className = [{
+    private readonly className: any[] = [{
         id: 1,
         name: 'A SPA app',
         email: 'aspa@test.com',
@@ -18,6 +19,7 @@ export class UserService {
     }];
 
     async getAll(): Promise<any[]> {
+        await sleep(3000);
         return await this.className;
     }
 
@@ -36,7 +38,7 @@ export class UserService {
     }
 
     delete(id: number): any {
-        this.className = this.className.filter(p => p.id !== id);
+        return this.className.filter(p => p.id !== id);
     }
 }
 
