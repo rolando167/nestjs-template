@@ -7,10 +7,12 @@ export class UserService {
     className = [{
         id: '1',
         name: 'A SPA app',
+        email: 'aspa@test.com',
     },
     {
         id: '2',
         name: 'A Nest API',
+        email: 'anest@test.com',
     }];
 
     getAll(): any[] {

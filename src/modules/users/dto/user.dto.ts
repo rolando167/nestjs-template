@@ -1,11 +1,34 @@
+import {
+      IsInt
+    , IsDate
+    , IsEmail
+    , IsString
+    , IsBoolean
+    , MinLength
+    , IsNotEmpty
+    , IsNumberString
+} from 'class-validator';
+
 export class UserDto {
-// @ApiModelProperty()
+    @IsString()
+    @IsNotEmpty()
     readonly name: string;
-// @ApiModelProperty()
+
+    @IsEmail()
     readonly email: string;
-// @ApiModelProperty()
+
+    @IsNotEmpty()
+    @IsNumberString()
+    readonly password: string;
+
+    @IsBoolean()
+    readonly confirmed?: boolean;
+
+    @IsInt()
+    @MinLength(1)
     readonly status?: number;
-// @ApiModelProperty()
-    readonly date?: Date;
+
+    @IsDate()
+    readonly date_register?: Date;
 }
 

@@ -18,9 +18,9 @@ export class UserController {
     // findOne(@Param('id') id: string): any {
     @Get(":id")
     getById(@Param('id') id: string, @Res() res: Response): any {
-        const task = this.userService.getById(id) || null;
+        const data = this.userService.getById(id) || null;
         res.status(HttpStatus.OK)
-            .json(task);
+            .json(data);
     }
 
     @Post('create')
