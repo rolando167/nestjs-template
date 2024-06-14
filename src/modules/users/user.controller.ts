@@ -12,9 +12,15 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get('test')
-    test(): string {
+    test(@Res() res: Response): string {
         //throw new ForbiddenException();
-        return 'test';
+        return "test";
+    }
+
+    @Get('allraw')
+    async getRawSql(@Res() res: Response): Promise<any> {
+        return res.status(HttpStatus.OK)
+            .json(await this.userService.getRawSql());
     }
 
     @Get('/all')
@@ -37,6 +43,8 @@ export class UserController {
         res.status(HttpStatus.OK)
             .json(data);
     }
+
+
 
     @Post('create')
     async create(@Req() req: Request, @Res() res: Response, @Body() user: any): Promise<any> {

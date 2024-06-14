@@ -67,6 +67,7 @@ Please make sure to update tests as appropriate.
  * https://www.prisma.io/docs/orm/prisma-client/queries/crud
  * https://github.com/prisma/prisma/issues/4072
  * NestJS Exception filter messes up error array if it comes from ValidationPipe
+ * https://www.prisma.io/docs/orm/prisma-client/queries/raw-database-access/raw-queries
  * 
 ```
 

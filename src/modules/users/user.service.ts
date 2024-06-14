@@ -22,6 +22,8 @@ export class UserService {
         icon: '🐺',
     }];
 
+
+
     async getAll(): Promise<any[] | null> {
         return await this.prisma.user.findMany({
             orderBy: [
@@ -49,6 +51,15 @@ export class UserService {
                 posts: true,
             },
         });
+    }
+
+    async getRawSql(): Promise<any | null> {
+        const email = `prisma.io`;
+        // const result = await this.prisma.$queryRaw`SELECT * FROM public."User" WHERE email = ${email}`
+        const result = await this.prisma.$queryRawUnsafe(
+             `SELECT * FROM public."User" where email like  '%${email}%'   `
+        );
+        return result;
     }
 
     async create(user: any): Promise<any | null> {
