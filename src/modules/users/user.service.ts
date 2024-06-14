@@ -3,6 +3,7 @@ import { UserDto } from './dto/user.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/core/config/databases/prisma.service';
 import { User, Prisma } from '@prisma/client';
+import { SCHEMA_DB } from 'src/core/constants';
 
 @Injectable()
 export class UserService {
@@ -57,8 +58,9 @@ export class UserService {
         const email = `prisma.io`;
         // const result = await this.prisma.$queryRaw`SELECT * FROM public."User" WHERE email = ${email}`
         const result = await this.prisma.$queryRawUnsafe(
-             `SELECT * FROM public."User" where email like  '%${email}%'   `
+            `SELECT * FROM ${SCHEMA_DB}."User" where email like '%${email}%'   `
         );
+
         return result;
     }
 
