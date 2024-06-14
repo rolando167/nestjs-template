@@ -2,12 +2,15 @@
 
 # 💻 💎 NestJS - Template Structure
 
-> Esctrutura base TOTAL, buenas practicas Api Rest
+> Esctrutura base TOTAL, buenas practicas Api Rest, PostgresSQL 99% getUsers
 
 ## 📌 Feactures
 
  * ✔ Api Rest Local
- * ✔ asyn/await - Promise<any>
+ * ✔ asyn/await - Promise
+ * ✔ configurado el .env
+ * ✔ Prisma con Postgres SQL
+ * ✔  
 
 ## 🌐 Installation
 
