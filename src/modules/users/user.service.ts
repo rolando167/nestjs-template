@@ -1,6 +1,6 @@
 import { sleep } from 'src/utils/classes/sleep';
 import { UserDto } from './dto/user.dto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/core/config/databases/prisma.service';
 import { User, Prisma } from '@prisma/client';
 
@@ -22,34 +22,49 @@ export class UserService {
         icon: '🐺',
     }];
 
-    async getAll(): Promise<any[]> {
-        //await sleep(3000);
-        return await this.className;
-    }
-
-    async getUsers(): Promise<any[] | null> {
-        return this.prisma.user.findMany();
+    async getAll(): Promise<any[] | null> {
+        return await this.prisma.user.findMany();
     }
 
     async getById(id: number): Promise<any | null> {
-        return this.prisma.user.findUnique({
+        return await this.prisma.user.findUnique({
             where: {
                 id: id,
             },
         });
     }
 
-    create(user: any): any {
-        console.log(user.title);
-        return `This action returns a 📄 2024`;
+    async getUserPosts(id: number): Promise<any | null> {
+        return await this.prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+            include: {
+              posts: true,
+            },
+        });
+    }
+
+    async create(user: any): Promise<any | null> {
+        console.log(user.name);
+        return this.prisma.user.create({
+            data: user
+        });
     }
 
     update(id: string, user: any): any {
         return `This action returns a 📄 2024`;
     }
 
-    delete(id: number): any {
-        return this.className.filter(p => p.id !== id);
+    async delete(id: number): Promise<any | null> {
+        const deleteUser = await this.prisma.user.delete({
+            where: {
+              id: id,
+            },
+        }).catch(() => {
+            throw new NotFoundException(`Can't find item with id ${id}`);
+        })
+        return deleteUser;
     }
 }
 

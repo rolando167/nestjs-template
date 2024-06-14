@@ -64,7 +64,9 @@ Please make sure to update tests as appropriate.
 ```python
 # returns 'words'
  * https://github.com/chnirt/nestjs-graphql-best-practice
-
+ * https://www.prisma.io/docs/orm/prisma-client/queries/crud
+ * https://github.com/prisma/prisma/issues/4072
+ * 
 ```
 
 ## License

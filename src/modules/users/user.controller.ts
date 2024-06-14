@@ -17,12 +17,6 @@ export class UserController {
         return 'test';
     }
 
-    @Get('allUsers')
-    async getUsers(@Res() res: Response): Promise<any> {
-        return res.status(HttpStatus.OK)
-            .json(await this.userService.getUsers());
-    }
-
     @Get('/all')
     async getAll(@Res() res: Response): Promise<any> {
         return res.status(HttpStatus.OK)
@@ -37,12 +31,20 @@ export class UserController {
             .json(data);
     }
 
+    @Get("relation/:id")
+    async getUserPosts(@Param('id', ParseIntPipe) id: number, @Res() res: Response): Promise<any> {
+        const data = await this.userService.getUserPosts(id) || null;
+        res.status(HttpStatus.OK)
+            .json(data);
+    }
+
     @Post('create')
-    create(@Req() req: Request, @Res() res: Response, @Body() user: any): any {
+    async create(@Req() req: Request, @Res() res: Response, @Body() user: any): Promise<any> {
         console.log(req.url);
-        this.userService.create(user);
+        const data = await this.userService.create(user);
         res.status(HttpStatus.CREATED).json({
-            "message": "Created!!"
+            "message": "Created!!",
+            data
         });
     }
 
@@ -60,9 +62,10 @@ export class UserController {
       */
     @Delete('delete/:id')
     async delete(@Param('id', ParseIntPipe) id: number, @Res() res: Response): Promise<any> {
-        await this.userService.delete(id);
+        const data = await this.userService.delete(id);
         res.status(HttpStatus.OK).json({
-            "message": "Deleted!!"
+            "message": "Deleted!!",
+            data
         });
     }
 }
