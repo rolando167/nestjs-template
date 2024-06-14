@@ -52,7 +52,7 @@ export class UserService {
         });
     }
 
-    update(id: string, user: any): any {
+    async update(id: string, user: any): Promise<any | null> {
         return `This action returns a 📄 2024`;
     }
 
