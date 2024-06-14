@@ -23,7 +23,13 @@ export class UserService {
     }];
 
     async getAll(): Promise<any[] | null> {
-        return await this.prisma.user.findMany();
+        return await this.prisma.user.findMany({
+            orderBy: [
+                {
+                    id: 'asc',
+                },
+            ],
+        });
     }
 
     async getById(id: number): Promise<any | null> {
@@ -40,7 +46,7 @@ export class UserService {
                 id: id,
             },
             include: {
-              posts: true,
+                posts: true,
             },
         });
     }
@@ -53,13 +59,16 @@ export class UserService {
     }
 
     async update(id: string, user: any): Promise<any | null> {
-        return `This action returns a 📄 2024`;
+        return this.prisma.user.update({
+            where: { id: Number(id) },
+            data: { name: user.name },
+        });
     }
 
     async delete(id: number): Promise<any | null> {
         const deleteUser = await this.prisma.user.delete({
             where: {
-              id: id,
+                id: id,
             },
         }).catch(() => {
             throw new NotFoundException(`Can't find item with id ${id}`);

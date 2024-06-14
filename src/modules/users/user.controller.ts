@@ -49,10 +49,11 @@ export class UserController {
     }
 
     @Put('update/:id')
-    update(@Param('id') id: string, @Body() user: any, @Res() res: Response): any {
-        this.userService.update(id, user);
+    async update(@Param('id') id: string, @Body() user: any, @Res() res: Response): Promise<any> {
+        const data = await this.userService.update(id, user);
         res.status(HttpStatus.CREATED).json({
-            "message": "Updated!!"
+            "message": "Updated!!",
+            data
         });
     }
 

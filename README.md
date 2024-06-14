@@ -2,7 +2,7 @@
 
 # 💻 💎 NestJS - Template Structure
 
-> Esctrutura base TOTAL, buenas practicas Api Rest, PostgresSQL 99% getUsers
+> Esctrutura base TOTAL, buenas practicas Api Rest, PostgresSQL 99% CRUD
 
 ## 📌 Feactures
 
