@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put, Delete, Res, Req, HttpStatus, ParseIntPipe, UseFilters, ForbiddenException } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Res, Req, HttpStatus, ParseIntPipe, UseFilters, ForbiddenException, BadRequestException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { Request, Response } from 'express';
@@ -71,10 +71,14 @@ export class UserController {
       */
     @Delete('delete/:id')
     async delete(@Param('id', ParseIntPipe) id: number, @Res() res: Response): Promise<any> {
-        const data = await this.userService.delete(id);
-        res.status(HttpStatus.OK).json({
-            "message": "Deleted!!",
-            data
-        });
+        try {
+            const data = await this.userService.delete(id);
+            res.status(HttpStatus.OK).json({
+                "message": "Deleted!!",
+                data
+            });
+        } catch (error) {
+            throw new BadRequestException('User does not exist');
+        }
     }
 }
