@@ -9,7 +9,7 @@
  * ✔ Api Rest Local
  * ✔ asyn/await - Promise
  * ✔ configurado el .env
- * ✔ Prisma con Postgres SQL
+ * ✔ Prisma con Postgres SQL - PGadmin 4
  * ✔  
 
 ## 🌐 Installation
