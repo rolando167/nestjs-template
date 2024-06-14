@@ -1,9 +1,13 @@
 import { sleep } from 'src/utils/classes/sleep';
 import { UserDto } from './dto/user.dto';
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/core/config/databases/prisma.service';
+import { User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class UserService {
+
+    constructor(private prisma: PrismaService) {}
 
     private readonly className: any[] = [{
         id: 1,
@@ -21,6 +25,10 @@ export class UserService {
     async getAll(): Promise<any[]> {
         //await sleep(3000);
         return await this.className;
+    }
+
+    async getUsers(): Promise<any[] | null> {
+        return this.prisma.user.findMany();
     }
 
     async getById(id: number): Promise<any[] | UserDto> {

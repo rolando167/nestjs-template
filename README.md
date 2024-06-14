@@ -23,6 +23,9 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 > npm i --save class-validator class-transformer
 
 > npm install prisma --save-dev
+> npx prisma init
+
+> npm i --save @nestjs/config
 ```
 
 ## 🔰 Running the app

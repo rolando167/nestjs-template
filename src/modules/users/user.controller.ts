@@ -17,6 +17,12 @@ export class UserController {
         return 'test';
     }
 
+    @Get('allUsers')
+    async getUsers(@Res() res: Response): Promise<any> {
+        return res.status(HttpStatus.OK)
+            .json(await this.userService.getUsers());
+    }
+
     @Get('/all')
     async getAll(@Res() res: Response): Promise<any> {
         return res.status(HttpStatus.OK)
