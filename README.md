@@ -10,7 +10,8 @@
  * ✔ asyn/await - Promise
  * ✔ configurado el .env
  * ✔ Prisma con Postgres SQL - PGadmin 4
- * ✔  
+ * ✔ Repository pattern - multi DB
+ * ✔ 
 
 ## 🌐 Installation
 
