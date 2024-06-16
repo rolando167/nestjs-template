@@ -1,14 +1,12 @@
 import { sleep } from 'src/utils/classes/sleep';
 import { UserDto } from './dto/user.dto';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/core/config/databases/prisma.service';
-import { User, Prisma } from '@prisma/client';
 import { PostgresUserRepository } from './repository/postgres.user.repository';
 
 @Injectable()
 export class UserService {
 
-    constructor(private prisma: PrismaService, private postgresUserRepository: PostgresUserRepository) { }
+    constructor(private postgresUserRepository: PostgresUserRepository) { }
 
     private readonly className: any[] = [{
         id: 1,
