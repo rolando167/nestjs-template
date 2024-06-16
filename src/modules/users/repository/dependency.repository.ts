@@ -6,16 +6,18 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UserRepository{
-    constructor(  private  postgresUserRepository: PostgresUserRepository) { }
+    constructor(  private  postgresUserRepository: PostgresUserRepository,
+        private  mongoUserRepository: MongoUserRepository
+    ) { }
     getUserRepository(): IUserRepository {
         const ca: string = DATA_BASE_MAIN;
         switch (ca) {
             case "postgres":
                 return this.postgresUserRepository;
             case "mongo":
-                return new MongoUserRepository();
+                return this.mongoUserRepository;
             case "mySQL":
-                return new MongoUserRepository();
+                return this.mongoUserRepository;
             default:
                 throw new Error("Invalid Database type");
         }
