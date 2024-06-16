@@ -1,5 +1,5 @@
 import { PrismaService } from "src/core/config/databases/prisma.service";
-import { IUserRepository } from "./iuser.repository";
+import { IUserRepository } from "../interfaces/iuser.repository";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { SCHEMA_DB } from 'src/core/constants';
 

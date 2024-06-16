@@ -1,9 +1,9 @@
 import { DATA_BASE_MAIN } from "src/core/constants";
-import { IUserRepository } from "./iuser.repository";
+import { IUserRepository } from "../interfaces/iuser.repository";
 import { MongoUserRepository } from "./mongo.user.repository";
 import { PostgresUserRepository } from "./postgres.user.repository";
 import { Injectable } from "@nestjs/common";
-import { MockUserRepository } from "./mock.repository";
+import { MockUserRepository } from "./mock.user.repository";
 
 @Injectable()
 export class UserRepository{

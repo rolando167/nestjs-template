@@ -1,4 +1,4 @@
-import { IUserRepository } from "./iuser.repository";
+import { IUserRepository } from "../interfaces/iuser.repository";
 
 export class MockUserRepository implements IUserRepository{
     constructor(){}
