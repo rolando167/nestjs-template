@@ -12,9 +12,9 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get('test')
-    test(@Res() res: Response): string {
+    test(@Res() res: Response): any {
         //throw new ForbiddenException();
-        return "test";
+        return res.json("test");
     }
 
     @Get('allraw')
