@@ -6,23 +6,10 @@ import { PostgresUserRepository } from './repository/postgres.user.repository';
 @Injectable()
 export class UserService {
 
-    constructor(private postgresUserRepository: PostgresUserRepository) { }
-
-    private readonly className: any[] = [{
-        id: 1,
-        name: 'A SPA app',
-        email: 'aspa@test.com',
-        icon: '😄',
-    },
-    {
-        id: 2,
-        name: 'A Nest API :D',
-        email: 'anest@test.com',
-        icon: '🐺',
-    }];
+    constructor(private postgresUserRepository: PostgresUserRepository) {}
 
     async test(): Promise<any | null> {
-        return this.className;
+        return this.postgresUserRepository.usersMock;
     }
 
     async getAll(): Promise<any[] | null> {

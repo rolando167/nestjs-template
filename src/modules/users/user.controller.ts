@@ -44,7 +44,6 @@ export class UserController {
             .json(data);
     }
 
-
     @Post('create')
     async create(@Req() req: Request, @Res() res: Response, @Body() user: any): Promise<any> {
         console.log(req.url);

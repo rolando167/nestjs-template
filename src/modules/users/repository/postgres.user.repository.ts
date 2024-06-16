@@ -7,6 +7,19 @@ import { SCHEMA_DB } from 'src/core/constants';
 export class PostgresUserRepository implements IUserRepository {
     constructor(private prisma: PrismaService) { }
 
+    public readonly usersMock: any[] = [{
+        id: 1,
+        name: 'A SPA app',
+        email: 'aspa@test.com',
+        icon: '😄',
+    },
+    {
+        id: 2,
+        name: 'A Nest API :D',
+        email: 'anest@test.com',
+        icon: '🐺',
+    }];
+
     async getData(): Promise<any> {
         return this.prisma.user.findMany({
             orderBy: [
