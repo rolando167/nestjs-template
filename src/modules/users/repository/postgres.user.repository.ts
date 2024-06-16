@@ -1,14 +1,15 @@
 import { PrismaService } from "src/core/config/databases/prisma.service";
 import { IUserRepository } from "./iuser.repository";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { SCHEMA_DB } from 'src/core/constants';
 
 @Injectable()
-export class PostgresUserRepository  {
-    constructor( private  prisma: PrismaService) { }
+export class PostgresUserRepository implements IUserRepository {
+    constructor(private prisma: PrismaService) { }
 
     async getData(): Promise<any> {
         console.log("getttttt");
-        return   this.prisma.user.findMany({
+        return this.prisma.user.findMany({
             orderBy: [
                 {
                     id: 'asc',
@@ -17,13 +18,60 @@ export class PostgresUserRepository  {
         });
     }
 
-    async save(data: any): Promise<any> {
-        console.log("saveeeee");
-        throw new Error("Method not implemented.");
-    }
-    getById(id: string): Promise<any> {
+    async getById(id: number): Promise<any> {
         console.log("get id");
-        throw new Error("Method not implemented.");
+        return await this.prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+        });
+    }
+
+    async getUserPosts(id: number): Promise<any> {
+        return await this.prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+            include: {
+                posts: true,
+            },
+        });
+    }
+
+    async getRawSql(): Promise<any> {
+        const email = `prisma.io`;
+        // const result = await this.prisma.$queryRaw`SELECT * FROM public."User" WHERE email = ${email}`
+        const result = await this.prisma.$queryRawUnsafe(
+            `SELECT * FROM ${SCHEMA_DB}."User" where email like '%${email}%'   `
+        );
+
+        return result;
+    }
+
+    async save(data: any): Promise<any> {
+        console.log(data.name);
+        return this.prisma.user.create({
+            data: data
+        });
+    }
+
+    async update(id: string, user: any): Promise<any> {
+        return this.prisma.user.update({
+            where: { id: Number(id) },
+            data: { name: user.name },
+        });
+    }
+
+    async delete(id: number): Promise<any> {
+        const deleteUser = await this.prisma.user.delete({
+            where: {
+                id: id,
+            },
+        }).catch(() => {
+            throw new NotFoundException(`Can't find item with id ${id}`);
+        })
+        return deleteUser;
+        // throw new Error("Method not implemented.");
     }
 }
 

@@ -1,14 +1,14 @@
 import { sleep } from 'src/utils/classes/sleep';
 import { UserDto } from './dto/user.dto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/core/config/databases/prisma.service';
 import { User, Prisma } from '@prisma/client';
-import { SCHEMA_DB } from 'src/core/constants';
+import { PostgresUserRepository } from './repository/postgres.user.repository';
 
 @Injectable()
 export class UserService {
 
-    constructor(private prisma: PrismaService) { }
+    constructor(private prisma: PrismaService, private postgresUserRepository: PostgresUserRepository) { }
 
     private readonly className: any[] = [{
         id: 1,
@@ -23,70 +23,36 @@ export class UserService {
         icon: '🐺',
     }];
 
-
+    async test(): Promise<any | null> {
+        return this.className;
+    }
 
     async getAll(): Promise<any[] | null> {
-        return await this.prisma.user.findMany({
-            orderBy: [
-                {
-                    id: 'asc',
-                },
-            ],
-        });
+        return this.postgresUserRepository.getData();
     }
 
     async getById(id: number): Promise<any | null> {
-        return await this.prisma.user.findUnique({
-            where: {
-                id: id,
-            },
-        });
+        return this.postgresUserRepository.getById(id);
     }
 
     async getUserPosts(id: number): Promise<any | null> {
-        return await this.prisma.user.findUnique({
-            where: {
-                id: id,
-            },
-            include: {
-                posts: true,
-            },
-        });
+        return this.postgresUserRepository.getUserPosts(id);
     }
 
     async getRawSql(): Promise<any | null> {
-        const email = `prisma.io`;
-        // const result = await this.prisma.$queryRaw`SELECT * FROM public."User" WHERE email = ${email}`
-        const result = await this.prisma.$queryRawUnsafe(
-            `SELECT * FROM ${SCHEMA_DB}."User" where email like '%${email}%'   `
-        );
-
-        return result;
+        return this.postgresUserRepository.getRawSql();
     }
 
-    async create(user: any): Promise<any | null> {
-        console.log(user.name);
-        return this.prisma.user.create({
-            data: user
-        });
+    async create(data: any): Promise<any | null> {
+        return this.postgresUserRepository.save(data);
     }
 
-    async update(id: string, user: any): Promise<any | null> {
-        return this.prisma.user.update({
-            where: { id: Number(id) },
-            data: { name: user.name },
-        });
+    async update(id: string, data: any): Promise<any | null> {
+        return this.postgresUserRepository.update(id, data);
     }
 
     async delete(id: number): Promise<any | null> {
-        const deleteUser = await this.prisma.user.delete({
-            where: {
-                id: id,
-            },
-        }).catch(() => {
-            throw new NotFoundException(`Can't find item with id ${id}`);
-        })
-        return deleteUser;
+        return this.postgresUserRepository.delete(id);
     }
 }
 

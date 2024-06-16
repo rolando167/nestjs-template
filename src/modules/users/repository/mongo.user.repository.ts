@@ -5,11 +5,25 @@ export class MongoUserRepository implements IUserRepository{
     getData(): Promise<any> {
         throw new Error("Method not implemented.");
     }
-
-    save(data: any): Promise<any> {
+    getById(id: number): Promise<any> {
         throw new Error("Method not implemented.");
     }
-    getById(id: string): Promise<any> {
+    getUserPosts(id: number): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+    getRawSql(): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+    async save(data: any): Promise<any> {
+        console.log("saveeeee");
+        throw new Error("Method not implemented.");
+    }
+
+    async update(id: string, user: any): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+
+    async delete(id: number): Promise<any> {
         throw new Error("Method not implemented.");
     }
 }

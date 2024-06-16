@@ -12,9 +12,9 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get('test')
-    test(@Res() res: Response): any {
-        //throw new ForbiddenException();
-        return res.json("test");
+    async test(@Res() res: Response): Promise<any>  {
+        return res.status(HttpStatus.OK)
+        .json(await this.userService.test());
     }
 
     @Get('allraw')
@@ -43,7 +43,6 @@ export class UserController {
         res.status(HttpStatus.OK)
             .json(data);
     }
-
 
 
     @Post('create')
