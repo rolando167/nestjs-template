@@ -5,6 +5,7 @@ import { DatabaseModule } from 'src/core/config/databases/database.module';
 import { PostgresUserRepository } from './repository/postgres.user.repository';
 import { UserRepository } from './repository/dependency.repository';
 import { MongoUserRepository } from './repository/mongo.user.repository';
+import { MockUserRepository } from './repository/mock.repository';
 
 @Module({
     imports: [DatabaseModule],
@@ -13,6 +14,7 @@ import { MongoUserRepository } from './repository/mongo.user.repository';
         , PostgresUserRepository
         , UserRepository
         , MongoUserRepository
+        , MockUserRepository
     ],
 })
 
