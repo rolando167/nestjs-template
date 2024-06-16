@@ -6,8 +6,7 @@ import { UserRepository } from './repository/dependency.repository';
 @Injectable()
 export class UserService {
 
-    constructor(private userRepository: UserRepository
-    ) {}
+    constructor(private userRepository: UserRepository) {}
 
     async test(): Promise<any | null> {
         return this.userRepository.getUserRepository().getData();
