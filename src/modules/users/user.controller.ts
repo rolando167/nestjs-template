@@ -32,7 +32,7 @@ export class UserController {
     // findOne(@Param('id') id: string): any {
     @Get(":id")
     async getById(@Param('id', ParseIntPipe) id: number, @Res() res: Response): Promise<any> {
-        const data = await this.userService.getById(id) || null;
+        const data = await this.userService.getById(id) || {};
         res.status(HttpStatus.OK)
             .json(data);
     }
