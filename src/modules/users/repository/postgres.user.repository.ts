@@ -8,7 +8,6 @@ export class PostgresUserRepository implements IUserRepository {
     constructor(private prisma: PrismaService) { }
 
     async getData(): Promise<any> {
-        console.log("getttttt");
         return this.prisma.user.findMany({
             orderBy: [
                 {
@@ -19,7 +18,6 @@ export class PostgresUserRepository implements IUserRepository {
     }
 
     async getById(id: number): Promise<any> {
-        console.log("get id");
         return await this.prisma.user.findUnique({
             where: {
                 id: id,
