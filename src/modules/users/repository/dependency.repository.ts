@@ -6,7 +6,8 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UserRepository{
-    constructor(  private  postgresUserRepository: PostgresUserRepository,
+    constructor(
+        private  postgresUserRepository: PostgresUserRepository,
         private  mongoUserRepository: MongoUserRepository
     ) { }
     getUserRepository(): IUserRepository {
