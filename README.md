@@ -71,6 +71,7 @@ Please make sure to update tests as appropriate.
  * https://www.prisma.io/docs/orm/prisma-client/queries/raw-database-access/raw-queries
  * https://github.com/andrechristikan/ack-nestjs-boilerplate/blob/main/src/router/router.module.ts
  * https://xbsoftware.medium.com/working-with-multiple-databases-simultaneously-using-nestjs-and-typeorm-521fdec0a748
+ * https://github.com/AlbertHernandez/repository-pattern-typescript-example
  * 
 ```
 
