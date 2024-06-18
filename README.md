@@ -53,7 +53,11 @@ $ npm run start:prod
 
 ## 📝 Notas
 
-Pull requests are welcome.
+* ⚠️ implementar Redis Cache y sqlLite
+* ⚠️ implementar JWT
+* ⚠️ implementar Midleware - Permisos
+* ⚠️ implementar Guard - Roles
+* ⚠️ implementar  
 
 Please make sure to update tests as appropriate.
 
