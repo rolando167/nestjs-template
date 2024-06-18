@@ -57,6 +57,7 @@ $ npm run start:prod
 * ⚠️ implementar JWT
 * ⚠️ implementar Midleware - Permisos
 * ⚠️ implementar Guard - Roles
+* ⚠️ implementar Swagger
 * ⚠️ implementar  
 
 ## 🖼 Images
