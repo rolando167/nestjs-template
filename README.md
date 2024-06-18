@@ -59,8 +59,6 @@ $ npm run start:prod
 * ⚠️ implementar Guard - Roles
 * ⚠️ implementar  
 
-Please make sure to update tests as appropriate.
-
 ## 🖼 Images
   <img src=main.jpg alt="Main"/>
 
