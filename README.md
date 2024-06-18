@@ -58,6 +58,7 @@ $ npm run start:prod
 * ⚠️ implementar Midleware - Permisos
 * ⚠️ implementar Guard - Roles
 * ⚠️ implementar Swagger
+* ⚠️ implementar GraphQL
 * ⚠️ implementar  
 
 ## 🖼 Images
