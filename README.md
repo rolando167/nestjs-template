@@ -59,6 +59,7 @@ $ npm run start:prod
 * ⚠️ implementar Guard - Roles
 * ⚠️ implementar Swagger
 * ⚠️ implementar GraphQL
+* ⚠️ implementar OpenApi
 * ⚠️ implementar  
 
 ## 🖼 Images
